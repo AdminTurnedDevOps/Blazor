@@ -25,5 +25,5 @@ steps:
     azureSubscription: 'Mike-Pay-As-You-Go(220284d2-6a19-4781-87f8-5c564ec4fec9)'
     appType: 'webApp'
     WebAppName: '$(appName)'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/_AdminTurnedDevOps_Blazor/blazorSolution'
+    packageForLinux: 'blazorSolution'
     
