@@ -1,0 +1,27 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Mike-Pay-As-You-Go(220284d2-6a19-4781-87f8-5c564ec4fec9)'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az appservice plan create -g $(resourceGroup) -n $(appPlanName)'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Mike-Pay-As-You-Go(220284d2-6a19-4781-87f8-5c564ec4fec9)'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'az webapp create -g $(resourceGroup) -p $(appPlanName) -n $(appName)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Mike-Pay-As-You-Go(220284d2-6a19-4781-87f8-5c564ec4fec9)'
+    appType: 'webApp'
+    WebAppName: '$(appName)'
