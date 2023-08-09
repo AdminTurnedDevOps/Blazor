@@ -13,3 +13,5 @@ namespace blazorSolution.Data
         public string Summary { get; set; }
     }
 }
+
+
